@@ -1,28 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>News API projects</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student News Portal</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <nav>
-       
-          <div class="nav-bar" style="max-width: 1200px; margin: 0 auto; padding: 40px;">
-                <div class="links">
-                    <a href="index.html" class="logo" style="border-bottom: none; text-transform: capitalize;">Newsdek</a>
-                    <a href="#">scholarships</a>
-                    <a href="#">interships</a>
-                </div>
-                
-                <div class="search-container">
-                    <input type="text" placeholder="search news here" id="searchInput">
-                    <button id="searchButton">search</button>
-                </div>
-        </div>
-        
-    </nav>
+
+  <nav>
+    <div class="obj-width nav-bar">
+      <a href="#" class="logo">Student News</a>
+      <div class="links">
+        <a href="index.html">Home</a>
+        <a href="#">Scholarships</a>
+        <a href="#">Internships</a>
+        <a href="#">Academics</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="obj-width">
+
+    <div id="searchContainer">
+      <input type="text" id="searchInput" placeholder="Search for news...">
+      <button id="searchButton">Search</button>
+    </div>
+
+    <div id="blogContainer">
+
+    </div>
+
+  </main>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
+
     <main id="blogContainer">
         <div class="obj-width">
             <div class="blog-card">
