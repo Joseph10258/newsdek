@@ -1,18 +1,18 @@
 const apiKey = '0af3b226f93542ee984b4eb332056a75';
-document.getElementById('searchButton').addEventListener('click', function(e) {
+
+document.getElementById('searchButton').addEventListener('click', function (e) {
   e.preventDefault();
   searchNews();
 });
-// Load default news on page load
-window.onload = function() {
+
+window.onload = function () {
   loadDefaultNews();
-}
+};
 
 function loadDefaultNews() {
-  const url = `https://newsapi.org/v2/everything?q=scholarship&pageSize=12&language=enapiKey=${apiKey}`;
+  const url = `https://newsapi.org/v2/everything?q=scholarship&pageSize=12&language=en&apiKey=${apiKey}`;
   fetchAndDisplay(url);
 }
-
 
 function searchNews() {
   const query = document.getElementById('searchInput').value.trim();
@@ -20,16 +20,20 @@ function searchNews() {
     alert('Please enter a search term.');
     return;
   }
-  const url = `https://newsapi.org/v2/everything?q=${query}&apiKey=${apiKey}`;
+  const url = `https://newsapi.org/v2/everything?q=${query}&pageSize=12&language=en&apiKey=${apiKey}`;
+  fetchAndDisplay(url, query);
+}
 
+function fetchAndDisplay(url, query = '') {
   fetch(url)
     .then(response => response.json())
     .then(data => {
       const articles = data.articles;
-      const blogGrid = document.getElementById('blogContainer');
-      blogGrid.innerHTML = ''; // Clear previous results
-      if (articles.length === 0) {
-        blogContainer.innerHTML = `<div style="text-align:center; font-size:20px; padding:20px;">😢Sorry no news found for "<strong>${query}</strong>" <br> check your spelling or try searching for something else</div>`;
+      const blogContainer = document.getElementById('blogContainer');
+      blogContainer.innerHTML = '';
+
+      if (!articles.length) {
+        blogContainer.innerHTML = `<div style="text-align:center; font-size:18px; padding:20px;">😢 No news found for "<strong>${query}</strong>". Try again.</div>`;
         return;
       }
 
@@ -47,9 +51,8 @@ function searchNews() {
         blogContainer.appendChild(card);
       });
     })
-     .catch(error => {
+    .catch(error => {
       console.error('Error fetching news:', error);
-      document.getElementById('blogGrid').innerHTML = `<div style="text-align:center; font-size:20px; padding:20px;">⚠️ Something went wrong. Try again later.</div>`;
+      document.getElementById('blogContainer').innerHTML = `<div style="text-align:center; font-size:18px; padding:20px;">⚠️ Something went wrong. Try again later.</div>`;
     });
 }
-document.getElementById('searchButton').addEventListener('click', searchNews);
